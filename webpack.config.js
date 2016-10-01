@@ -34,8 +34,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
   ],
   devServer: {
-    inline: true,
-    publicPath: '/dist/',
     hot: true,
     historyApiFallback: true,
   }
