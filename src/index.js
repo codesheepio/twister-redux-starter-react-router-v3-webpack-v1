@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import customStyle from './styles/custom.scss'
 import mainStyle from './styles/main.scss'
 import TweetList from './components/TweetList'
+import NewTweet from './components/NewTweet'
 
 const tweets = [
   {
@@ -19,6 +20,9 @@ const tweets = [
   },
 ]
 const App = () => (
-  <TweetList tweets={tweets} />
+  <div>
+    <NewTweet />
+    <TweetList tweets={tweets} />
+  </div>
 )
 ReactDOM.render(<App />, document.getElementById('react-root'))
