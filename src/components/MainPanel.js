@@ -15,7 +15,7 @@ class MainPanel extends Component {
   componentDidMount() {
     const uri='http://localhost:3000/api/tweets'
     const filter=`{ "where": { "username": "${this.state.username}" }}`
-    fetch(`${uri}?${filter}`)
+    fetch(`${uri}?filter=${filter}`)
       .then(response => response.json())
       .then(tweets => {
         this.setState({
