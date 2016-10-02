@@ -9,13 +9,13 @@ const tweets = [
   {
     id: 0,
     name: 'Supasate Choochaisri',
-    screenName: 'kaizerwing',
+    username: 'kaizerwing',
     tweetText: 'Lorem Ipsum ...' 
   },
   {
     id: 1,
     name: 'Arnupharp Viratanapanu',
-    screenName: 'topscores',
+    username: 'topscores',
     tweetText: 'Lorem Ipsum ...' 
   },
 ]
