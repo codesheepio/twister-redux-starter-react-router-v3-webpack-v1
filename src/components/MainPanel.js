@@ -12,6 +12,17 @@ class MainPanel extends Component {
     }
     this.addToTweetList = this.addToTweetList.bind(this)
   }
+  componentDidMount() {
+    const uri='http://localhost:3000/api/tweets'
+    const filter=`{ "where": { "username": "${this.state.username}" }}`
+    fetch(`${uri}?${filter}`)
+      .then(response => response.json())
+      .then(tweets => {
+        this.setState({
+          tweets: tweets
+        })
+      })
+  }
   addToTweetList(tweet) {
     this.setState({
       tweets: [
