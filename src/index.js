@@ -21,7 +21,7 @@ const tweets = [
 ]
 const App = () => (
   <div>
-    <NewTweet />
+    <NewTweet name={'Arnupharp'} username={'topscores'} />
     <TweetList tweets={tweets} />
   </div>
 )
