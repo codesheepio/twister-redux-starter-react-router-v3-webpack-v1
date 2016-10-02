@@ -18,11 +18,7 @@ class NewTweet extends Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name: this.props.name,
-        username: this.props.username,
-        tweetText: this.state.tweetText,
-      })
+      body: JSON.stringify(tweet)
     })
     .then((response) => {
       if (!response.ok) {
