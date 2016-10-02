@@ -6,15 +6,12 @@ class NewTweet extends Component {
     this.state = {
       tweetText: '',
     }
-    this.changeTweetText = this.changeTweetText.bind(this)
+    this.handleOnChange = this.handleOnChange.bind(this)
+    this.handleOnKeyDown = this.handleOnKeyDown.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this)
     this.addTweet = this.addTweet.bind(this)
   }
-  changeTweetText(event) {
-    this.setState({
-      tweetText: e.target.value,
-    })
-  }
-  addTweet(event) {
+  addTweet(tweet) {
     fetch('http://localhost:3000/api/tweets', {
       method: 'POST',
       headers: {
@@ -43,6 +40,31 @@ class NewTweet extends Component {
       console.log(error)
     })
   }
+  handleOnChange(event) {
+    this.setState({
+      tweetText: event.target.value,
+    })
+  }
+  handleOnKeyDown(event) {
+    if (event.keyCode != 13) {
+      return
+    }
+    event.preventDefault()
+    this.addTweet({
+      name: this.props.name,
+      username: this.props.username,
+      tweetText: this.state.tweetText,
+    })
+  }
+  handleOnClick(event) {
+    event.preventDefault()
+    this.addTweet({
+      name: this.props.name,
+      username: this.props.username,
+      tweetText: this.state.tweetText,
+    })
+  }
+
   render() {
     return (
       <div className={'new-tweet'}>
@@ -54,7 +76,8 @@ class NewTweet extends Component {
                 id={'tweetText'}
                 className={'form-control'}
                 placeholder={`What's happening`}
-                onChange={ this.changeTweetText }
+                onChange={ this.handleOnChange }
+                onKeyDown={ this.handleOnKeyDown }
                 value={ this.state.tweetText }
               />
             </div>
@@ -63,7 +86,7 @@ class NewTweet extends Component {
                 type={'button'}
                 className={'btn btn-default'}
                 value={'Tweet'}
-                onClick={ this.addTweet }
+                onClick={ this.handleOnClick }
               />
             </div>
           </div>
