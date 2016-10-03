@@ -20,15 +20,18 @@ class BodyContainer extends React.Component {
     this.getFollowStatus = this.getFollowStatus.bind(this)
   }
   componentDidMount() {
+    const ownerUsername = (this.props.params.ownerUsername)
+                        ? this.props.params.ownerUsername
+                        : this.state.username
     const newState = {}
-    this.fetchTweets(this.props.ownerUsername)
+    this.fetchTweets(ownerUsername)
       .then(tweets => {
         newState.tweets = tweets
-        return this.fetchNumFollowers(this.props.ownerUsername)
+        return this.fetchNumFollowers(ownerUsername)
       })
       .then(numFollowers => {
         newState.numFollowers = numFollowers
-        return this.fetchNumFollowings(this.props.ownerUsername)
+        return this.fetchNumFollowings(ownerUsername)
       })
       .then(numFollowings => {
         newState.numFollowings = numFollowings
@@ -36,11 +39,14 @@ class BodyContainer extends React.Component {
       })
   }
   componentDidUpdate() {
+    const ownerUsername = (this.props.params.ownerUsername)
+                    ? this.props.params.ownerUsername
+                    : this.state.username
     const newState = {}
-    this.fetchNumFollowers(this.props.ownerUsername)
+    this.fetchNumFollowers(ownerUsername)
       .then(numFollowers => {
         newState.numFollowers = numFollowers
-        return this.fetchNumFollowings(this.props.ownerUsername)
+        return this.fetchNumFollowings(ownerUsername)
       })
       .then(numFollowings => {
         newState.numFollowings = numFollowings
@@ -154,20 +160,29 @@ class BodyContainer extends React.Component {
     .catch(err => console.log(err))
   }
   render() {
-    const isOwnProfile = this.state.username === this.props.ownerUsername
+    const ownerUsername = (this.props.params.ownerUsername)
+                    ? this.props.params.ownerUsername
+                    : this.state.username
+    const nameMap = {
+      'kaizerwing': 'Supasate Choochaisri',
+      'topscores': 'Arnupharp Viratanapanu',
+      'jjirawute': 'Jirawute Cheungsirakulwit',
+    }
+    const ownerName = nameMap[[ownerUsername]]
+    const isOwnProfile = this.state.username === ownerUsername
     return (
       <div className="container body">
         <LeftPanel
           {...this.state}
-          name={this.props.ownerName}
-          username={this.props.ownerUsername}
+          name={ownerName}
+          username={ownerUsername}
           isOwnProfile={isOwnProfile}
           numTweets={this.state.tweets.length}
           toggleFollow={this.toggleFollow}
         />
         <MainPanel
-          name={this.props.ownerName}
-          username={this.props.ownerUsername}
+          name={ownerName}
+          username={ownerUsername}
           tweets={this.state.tweets}
           addToTweetList={this.addToTweetList}
           enableTweet={isOwnProfile}
@@ -175,11 +190,6 @@ class BodyContainer extends React.Component {
       </div>
     )
   }
-}
-
-BodyContainer.propTypes = {
-  ownerName: PropTypes.string.isRequired,
-  ownerUsername: PropTypes.string.isRequired,
 }
 
 export default BodyContainer
