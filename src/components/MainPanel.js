@@ -1,49 +1,30 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
 import NewTweet from './NewTweet'
 import TweetList from './TweetList'
 
-class MainPanel extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      name: 'Arnupharp Viratnapanu',
-      username: 'topscores',
-      tweets: [],
+const MainPanel = ({ name, username, tweets, enableTweet, addToTweetList }) => (
+  <div className='main-panel'>
+    { enableTweet
+        ? <NewTweet
+            name={ name }
+            username={ username }
+            addToTweetList={ addToTweetList }
+          />
+        :null
     }
-    this.addToTweetList = this.addToTweetList.bind(this)
-  }
-  componentDidMount() {
-    const uri='http://localhost:3000/api/tweets'
-    const filter=`{ "where": { "username": "${this.state.username}" }}`
-    fetch(`${uri}?filter=${filter}`)
-      .then(response => response.json())
-      .then(tweets => {
-        this.setState({
-          tweets: tweets
-        })
-      })
-  }
-  addToTweetList(tweet) {
-    this.setState({
-      tweets: [
-        ...this.state.tweets,
-        tweet,
-      ]
-    })
-  }
-  render() {
-    let { name, username, tweets } = this.state
-    return (
-      <div className='main-panel'>
-        <NewTweet
-          name={ name }
-          username={ username }
-          addToTweetList={ this.addToTweetList }
-        />
-        <TweetList tweets={ tweets } />
-      </div>
-    )
-  }
+    <TweetList tweets={ tweets } />
+  </div>
+)
+
+MainPanel.propTypes = {
+  name: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  addToTweetList: PropTypes.func,
+  enableTweet: PropTypes.bool,
+}
+
+MainPanel.defaultProps = {
+  enableTweet: false,
 }
 
 export default MainPanel
