@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import customStyle from './styles/custom.scss'
 import mainStyle from './styles/main.scss'
-import { Router, browserHistory } from 'react-router'
+import { ReduxRouter } from 'redux-router'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
@@ -16,9 +16,9 @@ const store = createStore(
 
 const App = (
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <ReduxRouter>
       { routes }
-    </Router>
+    </ReduxRouter>
   </Provider>
 )
 ReactDOM.render(App, document.getElementById('react-root'))
