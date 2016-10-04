@@ -5,11 +5,15 @@ import mainStyle from './styles/main.scss'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import MainLayout from './layouts/MainLayout'
 import BodyContainer from './components/BodyContainer'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
 
-const store = createStore(rootReducer)
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk)
+)
 
 const App = (
   <Provider store={store}>
