@@ -1,7 +1,7 @@
 {
-  "name": "twister-starter",
+  "name": "twister-redux-starter",
   "version": "1.0.0",
-  "description": "Starter project for twister coding practice project",
+  "description": "Starter project for twister-redux coding practice project",
   "main": "src/index.js",
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
@@ -17,6 +17,7 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
     "node-sass": "^3.10.1",
     "react-hot-loader": "^3.0.0-beta.5",
     "sass-loader": "^4.0.2",
@@ -32,12 +33,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codesheepio/twister-starter.git"
+    "url": "git+https://github.com/codesheepio/twister-redux-starter.git"
   },
   "author": "codesheep.io",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/codesheepio/twister-starter/issues"
+    "url": "https://github.com/codesheepio/twister-redux-starter/issues"
   },
-  "homepage": "https://github.com/codesheepio/twister-starter#readme"
+  "homepage": "https://github.com/codesheepio/twister-redux-starter#readme"
 }

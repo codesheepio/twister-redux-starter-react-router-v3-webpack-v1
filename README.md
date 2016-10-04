@@ -1,2 +1,2 @@
-# twister-starter
-Starter project for twister coding practice project
+# twister-redux-starter
+Starter project for twister-redux coding practice project
