@@ -3,11 +3,9 @@ import Tweet from './Tweet'
 
 class TweetList extends React.Component {
   componentDidMount() {
-    const mockTweets = [
-      { id: 1, name: 'Supasate Choochaisri', username: 'kaizerwing', tweetText: 'Hello', timestamp: '1234' },
-      { id: 2, name: 'Arnupharp Viratanapanu', username: 'topscores', tweetText: 'Love React', timestamp: '5678' },
-    ]
-    this.props.fetchTweetsSuccess(mockTweets)
+    const username = 'kaizerwing'
+
+    this.props.fetchTweets(username)
   }
 
   render() {
