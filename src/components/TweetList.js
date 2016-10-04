@@ -3,9 +3,9 @@ import Tweet from './Tweet'
 
 class TweetList extends React.Component {
   componentDidMount() {
-    const username = 'kaizerwing'
+    const ownerUsername = this.props.ownerUsername || 'kaizerwing'
 
-    this.props.fetchTweets(username)
+    this.props.fetchTweets(ownerUsername)
   }
 
   render() {
