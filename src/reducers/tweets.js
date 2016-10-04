@@ -5,7 +5,7 @@ const initialState = []
 const tweetsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_TWEETS_SUCCESS: {
-      return action.payload.tweets,
+      return action.payload.tweets
     }
     default: {
       return state
