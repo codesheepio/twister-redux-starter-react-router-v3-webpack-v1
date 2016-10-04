@@ -1,3 +1,4 @@
+import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import MainLayout from '../layouts/MainLayout'
 import BodyContainer from '../components/BodyContainer'
