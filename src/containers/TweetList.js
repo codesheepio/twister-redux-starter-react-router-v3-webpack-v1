@@ -3,6 +3,7 @@ import TweetList from '../components/TweetList'
 import { fetchTweets } from '../actions/tweet'
 
 const mapStateToProps = (state) => ({
+  ownerUsername: state.router.params.ownerUsername,
   tweets: state.tweets,
 })
 
