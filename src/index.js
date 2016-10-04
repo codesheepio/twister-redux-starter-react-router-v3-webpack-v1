@@ -7,10 +7,10 @@ import MainLayout from './layouts/MainLayout'
 import BodyContainer from './components/BodyContainer'
 
 const App = (
-  <Router history={ browserHistory }>
-    <Route path='/' component={ MainLayout }>
-      <IndexRoute component={ BodyContainer } />
-      <Route path=':ownerUsername' component={ BodyContainer } />
+  <Router history={browserHistory}>
+    <Route path='/' component={MainLayout}>
+      <IndexRoute component={BodyContainer} />
+      <Route path=':ownerUsername' component={BodyContainer} />
     </Route>
   </Router>
 )

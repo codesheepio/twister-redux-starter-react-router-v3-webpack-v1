@@ -3,26 +3,27 @@ import ProfileHeader from './ProfileHeader'
 import ProfileDetail from './ProfileDetail'
 import ProfileFollow from './ProfileFollow'
 
-class Profile extends React.Component {
-  render() {
-    const showProfileFollow = this.props.isOwnProfile ? '' :
-      <ProfileFollow
-        isFollowing={this.props.isFollowing}
-        handleToggleFollow={this.props.toggleFollow}
-      />
+const Profile = (props) => {
 
-    return (
-      <div className="profile">
-        <ProfileHeader name={this.props.name} username={this.props.username} />
-        <ProfileDetail
-          numTweets={this.props.numTweets}
-          numFollowers={this.props.numFollowers}
-          numFollowings={this.props.numFollowings}
-        />
-        { showProfileFollow }
-      </div>
-    )
-  }
+  const toggleFollow = () => {}
+
+  const showProfileFollow = props.isOwnProfile ? '' :
+    <ProfileFollow
+      isFollowing={props.isFollowing}
+      handleToggleFollow={toggleFollow}
+    />
+
+  return (
+    <div className="profile">
+      <ProfileHeader name={props.name} username={props.username} />
+      <ProfileDetail
+        numTweets={props.numTweets}
+        numFollowers={props.numFollowers}
+        numFollowings={props.numFollowings}
+      />
+      { showProfileFollow }
+    </div>
+  )
 }
 
 Profile.propTypes = {
@@ -33,7 +34,6 @@ Profile.propTypes = {
   numFollowings: PropTypes.number.isRequired,
   isFollowing: PropTypes.bool.isRequired,
   isOwnProfile: PropTypes.bool.isRequired,
-  toggleFollow: PropTypes.func.isRequired,
 }
 
 export default Profile
