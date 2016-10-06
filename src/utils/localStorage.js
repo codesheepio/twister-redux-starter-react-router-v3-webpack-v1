@@ -16,7 +16,7 @@ const saveState = (state) => {
     const serializedState = JSON.stringify(state)
     localStorage.setItem('state', serializedState)
   } catch (err) {
-    console.error(err)
+    console.error(err) // eslint-disable-line no-console
   }
 }
 

@@ -5,6 +5,7 @@ import { createHistory } from 'history'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
+import throttle from 'lodash.throttle'
 import rootReducer from './reducers'
 import routes from './routes'
 import { loadState, saveState } from './utils/localStorage'
@@ -25,11 +26,11 @@ const store = createStore(
   )
 )
 
-store.subscribe(() => {
+store.subscribe(throttle(() => {
   saveState({
     auth: store.getState().auth,
   })
-})
+}, 1000))
 
 const App = (
   <Provider store={store}>
