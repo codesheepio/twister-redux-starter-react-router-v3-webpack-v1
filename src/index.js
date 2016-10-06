@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
 import routes from './routes'
-import { loadState } from './utils/localStorage'
+import { loadState, saveState } from './utils/localStorage'
 import './styles/custom.scss'
 import './styles/main.scss'
 
@@ -24,6 +24,12 @@ const store = createStore(
     })
   )
 )
+
+store.subscribe(() => {
+  saveState({
+    auth: store.getState().auth,
+  })
+})
 
 const App = (
   <Provider store={store}>
