@@ -1,22 +1,48 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
+import { Field, reduxForm } from 'redux-form'
 
-const LoginForm = (props) => (
-  <div className="login-form">
-    <form>
-      <div className="login-label">
-        Log in with your username
-      </div>
-      <div className="form-group">
-        <input type="text" className="form-control" placeholder="Username">
-      </div>
-      <div className="form-group">
-        <input type="password" className="form-control" placeholder="Password">
-      </div>
-      <div className="form-group text-right">
-        <button className="btn btn-default">Log in</button>
-      </div>
-    </form>
-  </div>
-)
+const LoginForm = ({ handleSubmit, login }) => {
+  const submitLogin = (values) => {
+    login(values.username, values.password)
+  }
 
-export default LoginForm
+  return (
+    <div className="login-form">
+      <form onSubmit={handleSubmit(submitLogin)}>
+        <div className="login-label">
+          Log in with your username
+        </div>
+        <div className="form-group">
+          <Field
+            name="username"
+            component="input"
+            type="text"
+            className="form-control"
+            placeholder="Username"
+          />
+        </div>
+        <div className="form-group">
+          <Field
+            name="password"
+            component="input"
+            type="password"
+            className="form-control"
+            placeholder="Password"
+          />
+        </div>
+        <div className="form-group text-right">
+          <button className="btn btn-default">Log in</button>
+        </div>
+      </form>
+    </div>
+  )
+}
+
+LoginForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+}
+
+export default reduxForm({
+  form: 'login',
+})(LoginForm)
