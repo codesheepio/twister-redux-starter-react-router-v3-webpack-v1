@@ -1,14 +1,16 @@
 import React, { PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import { login } from '../actions/auth'
 
-const LoginForm = ({ handleSubmit, login }) => {
+const LoginForm = (props) => {
   const submitLogin = (values) => {
-    login(values.username, values.password)
+    props.login(values.username, values.password)
   }
 
   return (
     <div className="login-form">
-      <form onSubmit={handleSubmit(submitLogin)}>
+      <form onSubmit={props.handleSubmit(submitLogin)}>
         <div className="login-label">
           Log in with your username
         </div>
@@ -43,6 +45,8 @@ LoginForm.propTypes = {
   login: PropTypes.func.isRequired,
 }
 
-export default reduxForm({
+const ReduxLoginForm = reduxForm({
   form: 'login',
 })(LoginForm)
+
+export default connect(null, { login })(ReduxLoginForm)
