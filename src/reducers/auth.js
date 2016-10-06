@@ -6,19 +6,19 @@ const initialState = {
   token: '',
 }
 
-const authReducer = (state = initialState, action) => ({
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTH_LOGIN_SUCCESS: {
       return {
         name: action.payload.name,
         username: action.payload.username,
-        token: action.payload:token,
+        token: action.payload.token,
       }
     }
-    default {
+    default: {
       return state
     }
   }
-})
+}
 
 export default authReducer
