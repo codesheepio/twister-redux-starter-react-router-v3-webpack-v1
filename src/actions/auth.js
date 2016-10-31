@@ -36,7 +36,7 @@ const login = (username, password) => (dispatch) => {
 
 const signup = (username, name, email, password) => (dispatch) => {
   const uri = 'http://localhost:3000/api/TwisterUsers'
-  console.log('signup')
+
   fetch(uri, {
     method: 'POST',
     headers: {
