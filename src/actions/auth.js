@@ -1,5 +1,5 @@
 import { push } from 'redux-router'
-import { AUTH_LOGIN_SUCCESS } from './types'
+import { AUTH_LOGIN_SUCCESS, AUTH_LOGOUT } from './types'
 
 const loginSuccess = (username, name, token) => ({
   type: AUTH_LOGIN_SUCCESS,
@@ -60,7 +60,12 @@ const signup = (username, name, email, password) => (dispatch) => {
   .catch(err => console.err(err))
 }
 
+const logout = () => ({
+  type: AUTH_LOGOUT,
+})
+
 export {
   login,
   signup,
+  logout,
 }
