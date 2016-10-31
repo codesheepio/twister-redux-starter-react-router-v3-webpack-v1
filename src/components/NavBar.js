@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 
 const NavBar = (props) => {
   const handleLogout = () => {
+    console.log('logout')
     props.logout()
   }
 
