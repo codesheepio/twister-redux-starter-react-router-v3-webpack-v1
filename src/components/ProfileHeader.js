@@ -8,8 +8,13 @@ const ProfileHeader = ({name, username}) => (
 )
 
 ProfileHeader.propTypes = {
-  name: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  username: PropTypes.string,
+}
+
+ProfileHeader.defaultProps = {
+  name: 'N/A',
+  username: '',
 }
 
 export default ProfileHeader

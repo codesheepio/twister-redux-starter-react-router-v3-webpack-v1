@@ -20,9 +20,15 @@ const ProfileDetail = ({ numTweets, numFollowers, numFollowings }) => {
 }
 
 ProfileDetail.propTypes = {
-  numTweets: React.PropTypes.number.isRequired,
-  numFollowers: React.PropTypes.number.isRequired,
-  numFollowings: React.PropTypes.number.isRequired,
+  numTweets: React.PropTypes.number,
+  numFollowers: React.PropTypes.number,
+  numFollowings: React.PropTypes.number,
+}
+
+ProfileDetail.defaultProps = {
+  numTweets: 0,
+  numFollowers: 0,
+  numFollowings: 0,
 }
 
 export default ProfileDetail
