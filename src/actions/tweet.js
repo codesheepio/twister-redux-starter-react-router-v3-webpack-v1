@@ -9,7 +9,19 @@ const fetchTweetsSuccess = tweets => ({
 
 const fetchTweets = username => (dispatch) => {
   const uri = `http://localhost:3000/api/Tweets?filter={"where":{"username":"${username}"}}`
+  fetch(uri)
+  .then((response) => {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    return response.json()
+  })
+  .then(tweets => dispatch(fetchTweetsSuccess(tweets)))
+  .catch(err => console.error(err))
+}
 
+const fetchHomeFeed = token => (dispatch) => {
+  const uri = `http://localhost:3000/api/Tweets/homefeed?access_token=${token}`
   fetch(uri)
   .then((response) => {
     if (!response.ok) {
@@ -61,5 +73,6 @@ const postTweet = (name, username, tweetText, token) => (dispatch) => {
 
 export {
   fetchTweets,
+  fetchHomeFeed,
   postTweet,
 }
