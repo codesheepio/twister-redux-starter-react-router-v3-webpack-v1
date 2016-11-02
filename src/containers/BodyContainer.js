@@ -4,6 +4,7 @@ import BodyContainer from '../components/BodyContainer'
 
 const mapStateToProps = state => ({
   token: state.auth.token,
+  enableTweet: state.router.params.ownerUsername ? false : true, // eslint-disable-line
 })
 
 const mapDispatchToProps = dispatch => ({
