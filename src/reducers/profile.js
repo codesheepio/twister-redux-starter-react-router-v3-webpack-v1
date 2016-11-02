@@ -1,4 +1,9 @@
-import { PROFILE_FETCH_SUCCESS, TWEET_POST_SUCCESS, FOLLOW_FETCH_STATUS_SUCCESS } from '../actions/types'
+import {
+  PROFILE_FETCH_SUCCESS,
+  TWEET_POST_SUCCESS,
+  FOLLOW_FETCH_STATUS_SUCCESS,
+  FOLLOW_TOGGLE_STATUS_SUCCESS,
+} from '../actions/types'
 
 const initialState = {
   name: '',
@@ -29,7 +34,8 @@ const profileReducer = (state = initialState, action) => {
         numTweets: state.numTweets + 1,
       }
     }
-    case FOLLOW_FETCH_STATUS_SUCCESS: {
+    case FOLLOW_FETCH_STATUS_SUCCESS:
+    case FOLLOW_TOGGLE_STATUS_SUCCESS: {
       if (action.payload.followedUsername !== state.username) {
         return state
       }
