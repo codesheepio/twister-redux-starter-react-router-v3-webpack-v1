@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import NavBar from '../containers/NavBar'
 
 const MainLayout = props => (
@@ -7,5 +7,9 @@ const MainLayout = props => (
     { props.children }
   </div>
 )
+
+MainLayout.propTypes = {
+  children: PropTypes.element,
+}
 
 export default MainLayout

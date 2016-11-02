@@ -37,13 +37,14 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.2",
+    "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.1",
     "webpack-module-hot-accept": "^1.0.4"
   },
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "eslint .",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",

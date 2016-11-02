@@ -1,5 +1,6 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack') // eslint-disable-line
+
 module.exports = {
   devtool: 'source-map',
   entry: [
@@ -28,7 +29,7 @@ module.exports = {
         test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url',
       },
-    ]
+    ],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -36,5 +37,5 @@ module.exports = {
   devServer: {
     hot: true,
     historyApiFallback: true,
-  }
+  },
 }

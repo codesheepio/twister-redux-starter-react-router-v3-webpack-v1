@@ -20,14 +20,18 @@ class NewTweet extends Component {
       return
     }
     event.preventDefault()
-    this.props.postTweet(this.props.name, this.props.username, this.state.tweetText, this.props.token)
+    this.props.postTweet(
+      this.props.name, this.props.username, this.state.tweetText, this.props.token
+    )
     this.setState({
       tweetText: '',
     })
   }
   handleOnClick(event) {
     event.preventDefault()
-    this.props.postTweet(this.props.name, this.props.username, this.state.tweetText, this.props.token)
+    this.props.postTweet(
+      this.props.name, this.props.username, this.state.tweetText, this.props.token
+    )
     this.setState({
       tweetText: '',
     })
