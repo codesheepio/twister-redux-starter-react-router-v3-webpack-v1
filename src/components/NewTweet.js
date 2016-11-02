@@ -16,13 +16,18 @@ class NewTweet extends Component {
     })
   }
   handleOnKeyDown(event) {
-    if (event.keyCode != 13) {
+    if (event.keyCode !== 13) {
       return
     }
     event.preventDefault()
+    this.props.postTweet(this.props.name, this.props.username, this.state.tweetText, this.props.token)
+    this.setState({
+      tweetText: '',
+    })
   }
   handleOnClick(event) {
     event.preventDefault()
+    this.props.postTweet(this.props.name, this.props.username, this.state.tweetText, this.props.token)
     this.setState({
       tweetText: '',
     })
@@ -62,5 +67,7 @@ class NewTweet extends Component {
 NewTweet.propTypes = {
   name: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
+  postTweet: PropTypes.func.isRequired,
 }
 export default NewTweet
