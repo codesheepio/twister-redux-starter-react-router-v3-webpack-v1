@@ -24,6 +24,6 @@ app.use((req, res) => {
   res.status(200).send(getMarkup('<h1>Hello, express</h1>'))
 })
 
-app.listen(4000, () => {
-  console.log('Server start listening at http://localhost:4000')
+app.listen(8080, () => {
+  console.log('Server start listening at http://localhost:8080')
 })
