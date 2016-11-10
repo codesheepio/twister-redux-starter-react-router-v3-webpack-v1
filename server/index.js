@@ -98,8 +98,13 @@ if (isDeveloping) {
         res.status(400).send('Not Found')
       } else {
         const cookies = cookie.parse(req.headers.cookie || '')
-        console.log(cookies)
-        res.status(200).send(getMarkup(store))
+        if (!cookies.token && location !== '/signup') {
+          store.dispatch(match('login', () => {
+            res.status(200).send(getMarkup(store))
+          }))
+        } else {
+          res.status(200).send(getMarkup(store))
+        }
       }
     }))
   })
