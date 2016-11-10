@@ -34,6 +34,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendors', 'manifest']
     }),
+    new webpack.optimize.UglifyJsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('styles.css'),
