@@ -39,6 +39,7 @@ const getMarkup = store => {
 <head>
   <meta charset="utf-8" />
   <title>Twister</title>
+  <link rel="stylesheet" type="text/css" href="/dist/styles.css" />
 </head>
 <body>
   <div id="react-root">
