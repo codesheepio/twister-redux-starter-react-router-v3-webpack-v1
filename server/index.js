@@ -21,7 +21,7 @@ const getMarkup = html => (
 )
 
 app.use('/dist', express.static('./dist'))
-app.use('*', (req, res) => {
+app.use((req, res) => {
   res.status(200).send(getMarkup('<h1>Hello, express</h1>'))
 })
 
