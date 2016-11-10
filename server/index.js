@@ -45,7 +45,6 @@ const getMarkup = store => {
     ${html}
   </div>
   <script>window.__initialState = ${initialState}</script>
-  <script src="/dist/bundle.js"></script>
 </body>
 </html>
   `
