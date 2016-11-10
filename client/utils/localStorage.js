@@ -15,6 +15,7 @@ const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state)
     localStorage.setItem('state', serializedState)
+    document.cookie = `token=${state.auth.token}`
   } catch (err) {
     console.error(err) // eslint-disable-line no-console
   }

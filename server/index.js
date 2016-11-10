@@ -23,6 +23,9 @@ import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { ReduxRouter } from 'redux-router'
 
+// Extract cookie
+import cookie from 'cookie'
+
 const app = express()
 
 const getMarkup = store => {
@@ -46,6 +49,7 @@ const getMarkup = store => {
     ${html}
   </div>
   <script>window.__initialState = ${initialState}</script>
+  <script src="/dist/bundle.js"></script>
 </body>
 </html>
   `
@@ -84,7 +88,6 @@ if (isDeveloping) {
 
     store.dispatch(match(url, (error, redirectLocation, routerState) => {
       const { location, params, components } = routerState
-      console.log(routerState)
 
       if (error) {
         console.error('Router error:', error)
@@ -94,6 +97,8 @@ if (isDeveloping) {
       } else if (!routerState) {
         res.status(400).send('Not Found')
       } else {
+        const cookies = cookie.parse(req.headers.cookie || '')
+        console.log(cookies)
         res.status(200).send(getMarkup(store))
       }
     }))
