@@ -31,7 +31,6 @@ const getMarkup = html => (
   <div id="react-root">
     ${html}
   </div>
-  <script src="/dist/bundle.js"></script>
 </body>
 </html>
   `
