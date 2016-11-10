@@ -60,7 +60,7 @@
       "env": "development"
     },
     "start": {
-      "command": "node ./dist/server.js",
+      "command": "node ./dist/index.js",
       "env": "production"
     }
   },
