@@ -4,13 +4,13 @@ const webpack = require('webpack') // eslint-disable-line
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './client/index.js',
+    'webpack-hot-middleware/client',
+    './index.js',
   ],
   output: {
-    filename: 'bundle.js',
-    path: path.resolve('./dist'),
+    filename: 'server.js',
+    path: path.resolve('../dist'),
     publicPath: '/dist/',
   },
   module: {
@@ -32,7 +32,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
   ],
   devServer: {
     hot: true,
