@@ -31,8 +31,11 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendors', 'manifest']
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
   ],
 }
