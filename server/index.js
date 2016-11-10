@@ -20,7 +20,6 @@ const getMarkup = html => (
   <div id="react-root">
     ${html}
   </div>
-  <script src="/dist/bundle.js"></script>
 </body>
 </html>
   `
@@ -37,12 +36,12 @@ if (isDeveloping) {
   })
   app.use(middleware)
   app.use(webpackHotMiddleware(compiler))
-  app.use('*', (req, res) => {
+  app.use((req, res) => {
     res.status(200).sendFile(path.resolve('index.html'))
   })
 } else {
   app.use('/dist', express.static('./dist'))
-  app.use('*', (req, res) => {
+  app.use((req, res) => {
     console.log('production mode')
     res.status(200).send(getMarkup('<h1>Hello, express</h1>'))
   })
