@@ -51,7 +51,7 @@
     "webpack-module-hot-accept": "^1.0.4"
   },
   "scripts": {
-    "build:client": "webpack --config webpack.config.js",
+    "build:client": "webpack --config webpack.prod.config.js",
     "build:server": "babel -d dist/server server && babel -d dist/client client",
     "build": "npm run build:client && npm run build:server",
     "lint": "eslint .",
