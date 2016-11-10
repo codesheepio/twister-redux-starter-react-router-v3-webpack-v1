@@ -17,9 +17,22 @@ import routes from '../client/routes'
 // Create url
 import qs from 'query-string'
 
+// Render component to string
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+import { Provider } from 'react-redux'
+import { ReduxRouter } from 'redux-router'
+
 const app = express()
 
-const getMarkup = html => (
+const getMarkup = store => {
+  const initialState = JSON.stringify(store.getState())
+  const html = renderToString(
+    <Provider store={store}>
+      <ReduxRouter />
+    </Provider>
+  )
+  return (
 `
 <!DOCTYPE html>
 <html>
@@ -31,11 +44,13 @@ const getMarkup = html => (
   <div id="react-root">
     ${html}
   </div>
+  <script>window.__initialState = ${initialState}</script>
   <script src="/dist/bundle.js"></script>
 </body>
 </html>
   `
 )
+}
 
 const isDeveloping = process.env.NODE_ENV !== 'production'
 if (isDeveloping) {
@@ -71,7 +86,16 @@ if (isDeveloping) {
       const { location, params, components } = routerState
       console.log(routerState)
 
-      res.status(200).send('server side rendering')
+      if (error) {
+        console.error('Router error:', error)
+        res.status(500).send(error.message)
+      } else if (redirectLocation) {
+        res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+      } else if (!routerState) {
+        res.status(400).send('Not Found')
+      } else {
+        res.status(200).send(getMarkup(store))
+      }
     }))
   })
 }
