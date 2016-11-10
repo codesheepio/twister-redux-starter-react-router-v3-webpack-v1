@@ -6,6 +6,17 @@ import webpackMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import config from '../webpack.config.js'
 
+// Create store
+import { createStore, applyMiddleware, compose } from 'redux'
+import { reduxReactRouter, match } from 'redux-router/server'
+import { createMemoryHistory } from 'history'
+import thunk from 'redux-thunk'
+import rootReducer from '../client/reducers'
+import routes from '../client/routes'
+
+// Create url
+import qs from 'query-string'
+
 const app = express()
 
 const getMarkup = html => (
@@ -37,14 +48,31 @@ if (isDeveloping) {
   })
   app.use(middleware)
   app.use(webpackHotMiddleware(compiler))
-  app.use('*', (req, res) => {
+  app.use((req, res) => {
     res.status(200).sendFile(path.resolve('index.html'))
   })
 } else {
   app.use('/dist', express.static('./dist'))
-  app.use('*', (req, res) => {
-    console.log('production mode')
-    res.status(200).send(getMarkup('<h1>Hello, express</h1>'))
+  app.use((req, res) => {
+    const store = createStore(
+      rootReducer,
+      compose(
+        applyMiddleware(thunk),
+        reduxReactRouter({
+          routes,
+          createHistory: createMemoryHistory,
+        })
+      )
+    )
+    const query = qs.stringify(req.query)
+    const url = req.path + (query.length ? '?' + query : '')
+
+    store.dispatch(match(url, (error, redirectLocation, routerState) => {
+      const { location, params, components } = routerState
+      console.log(routerState)
+
+      res.status(200).send('server side rendering')
+    }))
   })
 }
 

@@ -10,6 +10,7 @@
     "history": "^2.1.2",
     "lodash.isequal": "^4.4.0",
     "lodash.throttle": "^4.1.1",
+    "query-string": "^4.2.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
@@ -48,7 +49,7 @@
   },
   "scripts": {
     "build:client": "webpack --config webpack.config.js",
-    "build:server": "babel -d dist server",
+    "build:server": "babel -d dist/server server && babel -d dist/client client",
     "build": "npm run build:client && npm run build:server",
     "lint": "eslint .",
     "dev": "better-npm-run dev",
@@ -57,11 +58,15 @@
   "betterScripts": {
     "dev": {
       "command": "nodemon --watch server ./server/index.js --exec babel-node",
-      "env": "development"
+      "env": {
+        "NODE_ENV": "development"
+      }
     },
     "start": {
-      "command": "node ./dist/server.js",
-      "env": "production"
+      "command": "node ./dist/server/index.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
     }
   },
   "repository": {
