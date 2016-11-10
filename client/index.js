@@ -12,7 +12,7 @@ import { loadState, saveState } from './utils/localStorage'
 import './styles/custom.scss'
 import './styles/main.scss'
 
-const preloadedState = loadState()
+const preloadedState = Object.assign({}, window.__initialState, loadState())
 
 const store = createStore(
   rootReducer,

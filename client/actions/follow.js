@@ -1,5 +1,5 @@
 import { FOLLOW_FETCH_STATUS_SUCCESS, FOLLOW_TOGGLE_STATUS_SUCCESS } from './types'
-
+import fetch from 'isomorphic-fetch'
 const fetchFollowStatusSuccess = (followedUsername, isFollowing) => ({
   type: FOLLOW_FETCH_STATUS_SUCCESS,
   payload: {

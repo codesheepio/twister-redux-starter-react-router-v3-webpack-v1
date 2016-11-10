@@ -1,6 +1,6 @@
 import { push } from 'redux-router'
 import { AUTH_LOGIN_SUCCESS, AUTH_LOGOUT } from './types'
-
+import fetch from 'isomorphic-fetch'
 const loginSuccess = (username, name, token) => ({
   type: AUTH_LOGIN_SUCCESS,
   payload: {

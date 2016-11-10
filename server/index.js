@@ -103,7 +103,16 @@ if (isDeveloping) {
             res.status(200).send(getMarkup(store))
           }))
         } else {
-          res.status(200).send(getMarkup(store))
+          const { components } = routerState
+          const leafComponent = components[components.length -1].WrappedComponent
+          let fetchData = () => (Promise.resolve())
+          if (leafComponent && leafComponent.fetchData) {
+            fetchData = leafComponent.fetchData
+          }
+          fetchData({ store, location, params })
+            .then(() => {
+              res.status(200).send(getMarkup(store))
+            })
         }
       }
     }))

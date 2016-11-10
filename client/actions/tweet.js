@@ -1,5 +1,5 @@
 import { FETCH_TWEETS_SUCCESS, TWEET_POST_SUCCESS } from './types'
-
+import fetch from 'isomorphic-fetch'
 const fetchTweetsSuccess = tweets => ({
   type: FETCH_TWEETS_SUCCESS,
   payload: {
@@ -9,7 +9,7 @@ const fetchTweetsSuccess = tweets => ({
 
 const fetchTweets = username => (dispatch) => {
   const uri = `http://localhost:3000/api/Tweets?filter={"where":{"username":"${username}"}}`
-  fetch(uri)
+  return fetch(uri)
   .then((response) => {
     if (!response.ok) {
       throw Error(response.statusText)
@@ -22,7 +22,7 @@ const fetchTweets = username => (dispatch) => {
 
 const fetchHomeFeed = token => (dispatch) => {
   const uri = `http://localhost:3000/api/Tweets/homefeed?access_token=${token}`
-  fetch(uri)
+  return fetch(uri)
   .then((response) => {
     if (!response.ok) {
       throw Error(response.statusText)
