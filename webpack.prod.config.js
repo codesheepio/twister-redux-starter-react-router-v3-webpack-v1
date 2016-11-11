@@ -14,7 +14,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel', 'webpack-module-hot-accept'],
+        loaders: ['babel'],
       },
       {
         test: /\.scss$/,
