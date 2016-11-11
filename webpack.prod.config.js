@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack') // eslint-disable-line
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: {
     app: path.resolve('client/index.js'),
@@ -44,6 +45,9 @@ module.exports = {
       purifyOptions: {
         minify: true,
       },
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve('server/index.html'),
     }),
   ],
 }
