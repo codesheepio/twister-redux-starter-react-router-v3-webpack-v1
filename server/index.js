@@ -49,7 +49,8 @@ const getMarkup = store => {
     ${html}
   </div>
   <script>window.__initialState = ${initialState}</script>
-  <script src="/dist/bundle.js"></script>
+  <script src="/dist/vendors.js"></script>
+  <script src="/dist/app.js"></script>
 </body>
 </html>
   `
