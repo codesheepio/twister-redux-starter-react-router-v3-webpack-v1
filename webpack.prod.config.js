@@ -41,6 +41,9 @@ module.exports = {
     new ExtractTextPlugin('styles.css'),
     new PurifyCSSPlugin({
       basePath: process.cwd(),
+      purifyOptions: {
+        minify: true,
+      },
     }),
   ],
 }
